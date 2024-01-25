@@ -3,9 +3,7 @@ import React, {useState} from "react";
 import propTypes from "prop-types";
  
 export default function Conversion(props) {
-
     const [text,setText] = useState("");
-
 
     const textOnChange = (event) =>{
         setText(event.target.value);
@@ -38,6 +36,7 @@ export default function Conversion(props) {
       
       const btnOnClick5 = ()=>{
         navigator.clipboard.writeText(text);
+        document.getSelection().removeAllRanges();
         alert("Text copied");
       }
       const btnOnClick6 = ()=>{
@@ -58,21 +57,21 @@ export default function Conversion(props) {
         </textarea>
       </div>
       <div className="mt-3 d-grid gap-3 d-md-flex ">
-        <button className="btn btn-primary" onClick={btnOnClick1}>{props.button1}</button>
-        <button className="btn btn-success" onClick={btnOnClick2}>{props.button2}</button>
-        <button className="btn btn-info" onClick={btnOnClick3}>{props.button3}</button>
-        <button className="btn btn-secondary" onClick={btnOnClick4}>{props.button4}</button>
-        <button className="btn btn-secondary" onClick={btnOnClick5}>{props.button5}</button>
-        <button className="btn btn-warning" onClick={btnOnClick6}>{props.button6}</button>
+        <button disabled={text.length === 0} className="btn btn-primary my-3" onClick={btnOnClick1}>{props.button1}</button>
+        <button disabled={text.length === 0} className="btn btn-success my-3" onClick={btnOnClick2}>{props.button2}</button>
+        <button disabled={text.length === 0} className="btn btn-info my-3" onClick={btnOnClick3}>{props.button3}</button>
+        <button disabled={text.length === 0} className="btn btn-secondary my-3" onClick={btnOnClick4}>{props.button4}</button>
+        <button disabled={text.length === 0} className="btn btn-secondary my-3" onClick={btnOnClick5}>{props.button5}</button>
+        <button disabled={text.length === 0} className="btn btn-warning my-3" onClick={btnOnClick6}>{props.button6}</button>
       </div> 
       <div className="container">
         <h2 className="mt-3">{props.summary}</h2>
-        <p>{text.split(" ").filter((t)=>t !== "").length} Words and {text.length} Characters</p>
-        <p>Estimated reading time is :- <b>{.008*text.split(" ").length} minutes </b></p>
+        <p>{text.split(/\s+/).filter((t)=>t !== "").length} Words and {text.length} Characters</p>
+        <p>Estimated reading time is :- <b>{.008*text.split(" ").filter((t)=>t !== "").length} minutes </b></p>
       </div> 
       <div className="container mt-3">
         <h2 className="mb-3">{props.preview}</h2>
-        <p>{`${text.length>0?text:"Type your text here to preview"}`}</p>
+        <p>{`${text.length>0?text:"Type your text to preview"}`}</p>
       </div>
       </div>
     </>

@@ -1,14 +1,15 @@
 import React from 'react'
 import propTypes from 'prop-types'
+import { Link , Outlet } from 'react-router-dom';
 
 export default function Navbar(props){
     return(
         <>
-        <nav className={`navbar navbar-expand-lg  navbar-${props.mode} bg-${props.mode} `}>
+        <nav className={`navbar navbar-expand-lg  navbar-dark bg-dark `}>
           <div className="container-fluid">
-            <a className="navbar-brand" href="/">
+            <Link className="navbar-brand" to="/">
               {props.title}
-            </a>
+            </Link>
             <button
               className="navbar-toggler"
               type="button"
@@ -23,45 +24,38 @@ export default function Navbar(props){
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="/">
+                  <Link className="nav-link active" aria-current="page" to="/">
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="./components/About.js">
+                  <Link className="nav-link" to="/about">
                     {props.about}
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/">
+                  <Link className="nav-link" to="/services">
                     {props.service}
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/">
+                  <Link className="nav-link" to="/contact">
                     Contact
-                  </a>
+                  </Link>
                 </li>
               </ul>
+              <Outlet/>
               <div className={`form-check form-switch pe-3 text-${props.mode==="dark"?"light":"dark"}`}>
                 <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={props.toggleSwitch}/>
-                <label className="form-check-label" htmlFor="flexSwitchCheckDefault"  >Dark Blue Mode</label>
-              </div>
-              <div className={`form-check form-switch pe-3 text-${props.mode==="dark"?"light":"dark"}`}>
-                <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={props.toggleSwitch1}/>
-                <label className="form-check-label" htmlFor="flexSwitchCheckDefault"  >Dark Orange Mode</label>
-              </div>
-              <div className={`form-check form-switch pe-3 text-${props.mode==="dark"?"light":"dark"}`}>
-                <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={props.toggleSwitch2}/>
-                <label className="form-check-label" htmlFor="flexSwitchCheckDefault"  >Dark Red Mode</label>
+                <label className="form-check-label" htmlFor="flexSwitchCheckDefault" style={{color:"#fff"}} >Dark Blue Mode</label>
               </div>
               <div className={`form-check form-switch pe-3 text-${props.mode==="dark"?"light":"dark"}`}>
                 <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={props.toggleSwitch3}/>
-                <label className="form-check-label" htmlFor="flexSwitchCheckDefault"  >Dark Purple Mode</label>
+                <label className="form-check-label" htmlFor="flexSwitchCheckDefault"   style={{color:"#fff"}}>Dark Purple Mode</label>
               </div>
               <div className={`form-check form-switch pe-3 text-${props.mode==="dark"?"light":"dark"}`}>
                 <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={props.toggleSwitch4}/>
-                <label className="form-check-label" htmlFor="flexSwitchCheckDefault"  >Dark Green Mode</label>
+                <label className="form-check-label" htmlFor="flexSwitchCheckDefault"   style={{color:"#fff"}}>Dark Green Mode</label>
               </div>
             </div>
           </div>
@@ -71,7 +65,7 @@ export default function Navbar(props){
 };
 
 Navbar.defaultProps = {
-  title : "Reactjs Learning",
+  title : "Reactjs Word",
   service : "Services",
   about : "About"
 
